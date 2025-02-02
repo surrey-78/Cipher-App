@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./styles.css";
 
 const RailFenceCipher = () => {
   const [text, setText] = useState("");
@@ -40,13 +41,35 @@ const RailFenceCipher = () => {
     }).join("");
   };
 
+  // Handle Encrypt button click
+  const handleEncrypt = () => {
+    setOutput(encrypt(text, rails)); // Encrypt the text and set the output
+  };
+
+  // Handle Decrypt button click
+  const handleDecrypt = () => {
+    setOutput(decrypt(text, rails)); // Decrypt the text and set the output
+  };
+
   return (
     <div>
       <h2>Rail Fence Cipher</h2>
-      <input type="text" value={text} onChange={(e) => setText(e.target.value)} />
-      <input type="number" value={rails} onChange={(e) => setRails(parseInt(e.target.value))} />
-      <button onClick={() => setOutput(encrypt(text, rails))}>Encrypt</button>
-      <button onClick={() => setOutput(decrypt(text, rails))}>Decrypt</button>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)} // Update text state
+        placeholder="Enter text"
+      />
+      <input
+        type="number"
+        value={rails}
+        onChange={(e) => setRails(parseInt(e.target.value))} // Update rails state
+        placeholder="Enter number of rails"
+        min="2"
+      />
+      <button className="encrypt" onClick={handleEncrypt}>Encrypt</button>
+      <button className="decrypt" onClick={handleDecrypt}>Decrypt</button>
+
       <p>Output: {output}</p>
     </div>
   );

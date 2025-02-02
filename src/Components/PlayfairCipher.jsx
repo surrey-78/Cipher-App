@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./styles.css";
 
 const PlayfairCipher = () => {
   const [text, setText] = useState("");
@@ -75,13 +76,34 @@ const PlayfairCipher = () => {
     return result;
   };
 
+  // Handle Encrypt button click
+  const handleEncrypt = () => {
+    setOutput(encrypt(text, key)); // Encrypt the text and set the output
+  };
+
+  // Handle Decrypt button click
+  const handleDecrypt = () => {
+    setOutput(decrypt(text, key)); // Decrypt the text and set the output
+  };
+
   return (
     <div>
       <h2>Playfair Cipher</h2>
-      <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter text" />
-      <input type="text" value={key} onChange={(e) => setKey(e.target.value)} placeholder="Enter key" />
-      <button onClick={() => setOutput(encrypt(text, key))}>Encrypt</button>
-      <button onClick={() => setOutput(decrypt(text, key))}>Decrypt</button>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)} // Update text state
+        placeholder="Enter text"
+      />
+      <input
+        type="text"
+        value={key}
+        onChange={(e) => setKey(e.target.value)} // Update key state
+        placeholder="Enter key"
+      />
+      <button className="encrypt" onClick={handleEncrypt}>Encrypt</button>
+      <button className="decrypt" onClick={handleDecrypt}>Decrypt</button>
+
       <p>Output: {output}</p>
     </div>
   );

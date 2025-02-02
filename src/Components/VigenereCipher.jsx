@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./styles.css";
 
 const VigenereCipher = () => {
   const [text, setText] = useState("");
@@ -41,13 +42,42 @@ const VigenereCipher = () => {
     return result;
   };
 
+  // Handle Encrypt button click
+  const handleEncrypt = () => {
+    if (key) {
+      setOutput(encrypt(text, key)); // Encrypt the text and set the output
+    } else {
+      setOutput("Please enter a key.");
+    }
+  };
+
+  // Handle Decrypt button click
+  const handleDecrypt = () => {
+    if (key) {
+      setOutput(decrypt(text, key)); // Decrypt the text and set the output
+    } else {
+      setOutput("Please enter a key.");
+    }
+  };
+
   return (
     <div>
       <h2>Vigenère Cipher</h2>
-      <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Text"/>
-      <input type="text" value={key} onChange={(e) => setKey(e.target.value)} placeholder="Key"/>
-      <button onClick={() => setOutput(encrypt(text, key))}>Encrypt</button>
-      <button onClick={() => setOutput(decrypt(text, key))}>Decrypt</button>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)} // Update text state
+        placeholder="Text"
+      />
+      <input
+        type="text"
+        value={key}
+        onChange={(e) => setKey(e.target.value)} // Update key state
+        placeholder="Key"
+      />
+      <button className="encrypt" onClick={handleEncrypt}>Encrypt</button>
+      <button className="decrypt" onClick={handleDecrypt}>Decrypt</button>
+
       <p>Output: {output}</p>
     </div>
   );

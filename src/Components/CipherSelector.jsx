@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import HillCipher from "./HillCipher";
-import PlayfairCipher from "./PlayFairCipher";
-import VigenereCipher from "./VigenereCipher";
-import RailFenceCipher from "./RailfenceCipher";
 import CaesarCipher from "./CeaserCipher";
-
+import RailFenceCipher from "./RailfenceCipher";
+import VigenereCipher from "./VigenereCipher";
+import PlayfairCipher from "./PlayFairCipher";
+import HillCipher from "./HillCipher";
 
 const CipherSelector = () => {
   const [selectedCipher, setSelectedCipher] = useState("Caesar");

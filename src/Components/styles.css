@@ -1,84 +1,133 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e4f0f5; /* Light grayish-blue background for the whole page */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    color: #4a4a4a; /* Darker text color for readability */
   }
   
-  /* Main Container */
+  /* Container */
   .container {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px;
+    background: #fff; /* White background for content */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: 420px;
     text-align: center;
   }
   
   /* Title */
   h1 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 26px;
+    color: #008080; /* Teal color for title */
+    margin-bottom: 30px;
   }
   
   /* Dropdown */
   select {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    color: #333;
     cursor: pointer;
-    background: #fff;
+    margin-bottom: 20px;
   }
   
-  /* Cipher Input Fields */
+  select:focus {
+    outline: none;
+    border-color: #008080; /* Teal border when focused */
+  }
+  
+  /* Input Fields */
   input, textarea {
     width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #333;
+    background-color: #f5f5f5;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #008080; /* Teal border on focus */
+  }
+  
+  /* Textarea */
+  textarea {
+    min-height: 130px;
   }
   
   /* Buttons */
   button {
-    margin-top: 15px;
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
+    margin-top: 20px;
+    padding: 14px 22px;
+    background-color: #007f7f; /* Teal color for buttons */
+    color: #fff;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 8px;
+    font-size: 17px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease-in-out; /* Smooth transition for button hover */
+    margin-bottom: 20px; /* Space between buttons */
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #005555; /* Darker teal on hover */
+    transform: translateY(-3px); /* Slight lift effect on hover */
+  }
+  
+  button:active {
+    background-color: #003333; /* Even darker on click */
+    transform: translateY(1px); /* Pressed effect */
   }
   
   /* Output Box */
   .output {
-    margin-top: 15px;
-    padding: 10px;
-    background: #e9ecef;
-    border-radius: 5px;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f0f0f0;
+    border-radius: 8px;
     font-size: 16px;
     word-wrap: break-word;
+    color: #333;
+    border: 1px solid #ddd;
+  }
+  
+  /* Cipher Component Styles */
+  .cipher-container {
+    margin-top: 25px;
+    padding: 25px;
+    background: #fafafa;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Cipher Titles */
+  .cipher-container h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
   }
   
   /* Responsive Design */
   @media (max-width: 500px) {
     .container {
-      width: 90%;
+      width: 90%; /* Make container full width on small screens */
+      padding: 20px;
+    }
+    
+    button {
+      width: 100%; /* Full width for buttons on smaller screens */
     }
   }
   
