@@ -98,7 +98,6 @@ const RailFenceCipher = () => {
 
       <p>Output: {output}</p>
 
-      {/* Show the grid below */}
       <h3>Grid Representation:</h3>
       <pre>{grid}</pre>
     </div>
