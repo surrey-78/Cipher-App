@@ -3,12 +3,15 @@ import "./styles.css";
 
 const RailFenceCipher = () => {
   const [text, setText] = useState("");
-  const [rails, setRails] = useState(3);
+  const [rails, setRails] = useState();
+  const [offset, setOffset] = useState();  // New state for offset
   const [output, setOutput] = useState("");
+  const [grid, setGrid] = useState("");  // New state to show the grid
 
-  const encrypt = (input, rails) => {
+  // Encrypt function with offset
+  const encrypt = (input, rails, offset) => {
     let fence = Array.from({ length: rails }, () => []);
-    let rail = 0, dir = 1;
+    let rail = offset, dir = 1;
 
     for (let char of input) {
       fence[rail].push(char);
@@ -16,23 +19,40 @@ const RailFenceCipher = () => {
       if (rail === 0 || rail === rails - 1) dir *= -1;
     }
 
+    // Show grid for encryption
+    const gridRepresentation = fence.map((rail, index) => `Rail ${index + 1}: ${rail.join(" ")}`).join("\n");
+    setGrid(gridRepresentation); // Set the grid for visualization
+
     return fence.flat().join("");
   };
 
-  const decrypt = (input, rails) => {
+  // Decrypt function with offset
+  const decrypt = (input, rails, offset) => {
     let fence = Array.from({ length: rails }, () => []);
-    let rail = 0, dir = 1, pos = 0;
+    let rail = offset, dir = 1, pos = 0;
 
+    // Fill fence with placeholders
     for (let char of input) {
       fence[rail].push(null);
       rail += dir;
       if (rail === 0 || rail === rails - 1) dir *= -1;
     }
 
-    for (let i = 0; i < rails; i++)
-      for (let j = 0; j < fence[i].length; j++) fence[i][j] = input[pos++];
+    // Fill the fence with actual characters
+    for (let i = 0; i < rails; i++) {
+      for (let j = 0; j < fence[i].length; j++) {
+        fence[i][j] = input[pos++];
+      }
+    }
 
-    rail = 0; dir = 1; pos = 0;
+    // Show grid for decryption
+    const gridRepresentation = fence.map((rail, index) => `Rail ${index + 1}: ${rail.join(" ")}`).join("\n");
+    setGrid(gridRepresentation); // Set the grid for visualization
+
+    // Now, read the characters out in the zig-zag pattern
+    rail = offset;
+    dir = 1;
+    pos = 0;
     return input.split("").map(() => {
       let char = fence[rail].shift();
       rail += dir;
@@ -43,12 +63,12 @@ const RailFenceCipher = () => {
 
   // Handle Encrypt button click
   const handleEncrypt = () => {
-    setOutput(encrypt(text, rails)); // Encrypt the text and set the output
+    setOutput(encrypt(text, rails, offset));  // Encrypt the text with offset
   };
 
   // Handle Decrypt button click
   const handleDecrypt = () => {
-    setOutput(decrypt(text, rails)); // Decrypt the text and set the output
+    setOutput(decrypt(text, rails, offset));  // Decrypt the text with offset
   };
 
   return (
@@ -67,10 +87,20 @@ const RailFenceCipher = () => {
         placeholder="Enter number of rails"
         min="2"
       />
+      <input
+        type="number"
+        value={offset}
+        onChange={(e) => setOffset(parseInt(e.target.value))} // Update offset state
+        placeholder="Enter offset"
+      />
       <button className="encrypt" onClick={handleEncrypt}>Encrypt</button>
       <button className="decrypt" onClick={handleDecrypt}>Decrypt</button>
 
       <p>Output: {output}</p>
+
+      {/* Show the grid below */}
+      <h3>Grid Representation:</h3>
+      <pre>{grid}</pre>
     </div>
   );
 };

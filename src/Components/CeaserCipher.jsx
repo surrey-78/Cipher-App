@@ -21,8 +21,20 @@ const CaesarCipher = () => {
       .join("");
   };
 
-  // Function to decrypt text (using the same encrypt function with a reverse shift)
-  const decrypt = (input, shift) => encrypt(input, 26 - shift);
+const decrypt = (input, shift) => {
+    return input
+      .split("")
+      .map((char) => {
+        if (char.match(/[a-z]/i)) {
+          let code = char.charCodeAt(0);
+          let offset = char.toUpperCase() === char ? 65 : 97;
+          return String.fromCharCode(((code - offset - shift + 26) % 26) + offset);  
+        }
+        return char;
+      })
+      .join("");
+  };
+  
 
   // Handle Encrypt button click
   const handleEncrypt = () => {

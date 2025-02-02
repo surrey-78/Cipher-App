@@ -3,7 +3,6 @@ import CaesarCipher from "./CeaserCipher";
 import RailFenceCipher from "./RailfenceCipher";
 import VigenereCipher from "./VigenereCipher";
 import PlayfairCipher from "./PlayFairCipher";
-import HillCipher from "./HillCipher";
 
 const CipherSelector = () => {
   const [selectedCipher, setSelectedCipher] = useState("Caesar");
@@ -14,7 +13,6 @@ const CipherSelector = () => {
       case "Rail Fence": return <RailFenceCipher />;
       case "Vigenere": return <VigenereCipher />;
       case "Playfair": return <PlayfairCipher />;
-      case "Hill": return <HillCipher />;
       default: return <p>Select a cipher.</p>;
     }
   };
@@ -27,7 +25,6 @@ const CipherSelector = () => {
         <option value="Rail Fence">Rail Fence Cipher</option>
         <option value="Vigenere">Vigenère Cipher</option>
         <option value="Playfair">Playfair Cipher</option>
-        <option value="Hill">Hill Cipher</option>
       </select>
       {renderCipherComponent()}
     </div>
